@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<form action="/addproperty/" enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {{ form.type.label }}
+  {{ form.type }}
+  {{ form.type.errors }}
+  {{ form.address.label }}
+  {{ form.address }}
+  {{ form.address.errors }}
+  {{ form.num_rooms.label }}
+  {{ form.num_rooms }}
+  {{ form.num_rooms.errors }}
+  {{ form.num_bathrooms.label }}
+  {{ form.num_bathrooms }}
+  {{ form.num_bathrooms.errors }}
+  {{ form.sq_footage.label }}
+  {{ form.sq_footage }}
+  {{ form.sq_footage.errors }}
+  {{ form.price.label }}
+  {{ form.price }}
+  {{ form.price.errors }}
+
+  {{ form.upload.label }}
+  {{ form.upload }}
+  {{ form.upload.errors }}
+  
+  <input type="submit" class="button" value="Add Property">
+</form>
+{% endif %}
+{% endblock %}

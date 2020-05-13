@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<form action="/apply/" method="post">
+  {% csrf_token %}
+  {{ form.fname.label }}
+  {{ form.fname }}
+  {{ form.fname.errors }}
+  {{ form.lname.label }}
+  {{ form.lname }}
+  {{ form.lname.errors }}
+  {{ form.address.label }}
+  {{ form.address }}
+  {{ form.address.errors }}
+  {{ form.salary.label }}
+  {{ form.salary }}
+  {{ form.salary.errors }}
+  {{ form.ssn.label }}
+  {{ form.ssn }}
+  {{ form.ssn.errors }}
+  {{ form.phone.label }}
+  {{ form.phone }}
+  {{ form.phone.errors }}
+  <input type="submit" class="button" value="Submit Application">
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% if property_list %}
+<ul class="dropdown menu" data-dropdown-menu>
+  <li>
+    <a>Sort Properties</a>
+    <ul class="menu">
+      <li><a href="/">Featured</a></li>
+      <li><a href="/price/">By Price</a></li>
+      <li><a href="/sqft/">By Square Footage</a></li>
+      <li><a href="/bed/">By # Bedrooms</a></li>
+      <li><a href="/bath/">By # Bathrooms</a></li>
+      <li><a href="/apartments/">By Apartments</a></li>
+      <li><a href="/houses/">By Houses</a></li>
+    </ul>
+  </li>
+</ul>
+<div class="grid-x">
+  <div class="cell small-1">
+    <p class="text-center">Image</p>
+  </div>
+  <div class="cell small-1"></div>
+  <div class="cell small-1">
+    <p class="text-center">Property Type</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">Address</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center"># Bedrooms</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center"># Bathrooms</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">Square Footage</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">Price</p>
+  </div>
+</div>
+{% for p in property_list %}
+<div class="grid-x">
+  <div class="cell small-1">
+   <img src="{{ p.upload }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;"/> 
+ </div>
+ <div class="cell small-1">
+ </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.type }}</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.address }}</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.num_rooms }}</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.num_bathrooms }}</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.sq_footage }}</p>
+  </div>
+  <div class="cell small-1">
+    <p class="text-center">{{ p.price }}</p>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+{% if user.is_authenticated %}
+  <a class="button" href="/addproperty/">List A Property</a>
+  <a class="button" href="/chat/help">Need Help?</a>
+{% endif %}
+{% endblock %}
