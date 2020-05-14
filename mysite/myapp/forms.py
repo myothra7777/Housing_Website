@@ -54,8 +54,8 @@ class RegistrationForm(UserCreationForm):
 class PropertyForm(forms.Form):
     type = forms.ChoiceField(choices=models.property_types, label="Property Type")
     address = forms.CharField(max_length=100, label="Address")
-    num_rooms = forms.CharField(max_length=1, label="Number of Bedrooms")
-    num_bathrooms = forms.CharField(max_length=1, label="Number of Bathrooms")
+    num_rooms = forms.CharField(max_length=2, label="Number of Bedrooms")
+    num_bathrooms = forms.CharField(max_length=2, label="Number of Bathrooms")
     sq_footage = forms.CharField(max_length=5, label="Square Footage")
     price = forms.CharField(max_length=20, label="Monthly Cost")
     upload = forms.ImageField(label="Upload")
@@ -80,8 +80,11 @@ class ApplyForm(forms.Form):
     ssn = forms.CharField(max_length=11, label="SSN")
     phone = forms.CharField(max_length=20, label="Phone Number")
 
-    def save(self, request):
+    def save(self, request, prop_id):
+        property_instance = models.Property_Model.objects.filter(id=prop_id).get()
         application_instance = models.Application_Model()
+        application_instance.property = property_instance
+        application_instance.applicant = request.user
         application_instance.fname = self.cleaned_data["fname"]
         application_instance.lname = self.cleaned_data["lname"]
         application_instance.cur_address = self.cleaned_data["cur_address"]

@@ -3,12 +3,14 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% if property_list %}
+
 <ul class="dropdown menu" data-dropdown-menu>
   <li>
     <a>Sort Properties</a>
     <ul class="menu">
       <li><a href="/">Featured</a></li>
-      <li><a href="/price/">Price</a></li>
+      <li><a href="/priceasc/">Price (Low to High)</a></li>
+      <li><a href="/pricedesc/">Price (High to Low)</a></li>
       <li><a href="/sqft/">Square Footage</a></li>
       <li><a href="/bed/"># of Bedrooms</a></li>
       <li><a href="/bath/"># of Bathrooms</a></li>
@@ -68,15 +70,25 @@
     <p class="text-center"><br><br>{{ p.price }}</p>
   </div>
   {% if user.is_authenticated %}
+
   <div class="cell small-1">
-    <br><br><a class="button" href="/apply/">Apply Now</a>
+    <br><br><a class="button" href="/apply/{{ p.id }}/">Apply Now</a>
   </div>
+
+  <br><br>{{p.applied}}
+
   {% endif %}
 </div>
 {% endfor %}
-{% endif %}
 {% if user.is_authenticated %}
   <a class="button" href="/addproperty/">List A Property</a>
   <a class="button" href="/chat/help">Need Help?</a>
 {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static "js/app.js" %}"></script>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
-<form action="/apply/" enctype="multipart/form-data" method="post">
+<form action="/apply/{{ prop_id }}/" enctype="multipart/form-data" method="post">
   {% csrf_token %}
   {{ form.fname.label }}
   {{ form.fname }}

@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('price/', views.priceOrder),
+    path('priceasc/', views.priceOrderAsc),
+    path('pricedesc/', views.priceOrderDesc),
     path('sqft/', views.sqftOrder),
     path('bed/', views.bedOrder),
     path('bath/', views.bathOrder),
@@ -32,5 +33,5 @@ urlpatterns = [
     path('register/', views.register),
     path('logout/', views.logout_view),
     path('addproperty/', views.addproperty),
-    path('apply/', views.applyproperty),
+    path('apply/<int:prop_id>/', views.applyproperty),
 ]

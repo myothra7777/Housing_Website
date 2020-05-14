@@ -15,6 +15,7 @@ def logout_view(request):
 
 def index(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     property_list=[]
     for prop in property_objects:
         temp_prop = {}
@@ -27,10 +28,14 @@ def index(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -39,8 +44,9 @@ def index(request):
     }
     return render(request, "index.html", context=context)
 
-def priceOrder(request):
+def priceOrderAsc(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('price')
     property_list=[]
     for prop in ordered_properties:
@@ -54,10 +60,46 @@ def priceOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
+        property_list+=[temp_prop]
+
+    context = {
+        "title":"Student Housing",
+        "property_list":property_list,
+    }
+    return render(request, "index.html", context=context)
+
+def priceOrderDesc(request):
+    property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
+    ordered_properties = property_objects.order_by('-price')
+    property_list=[]
+    for prop in ordered_properties:
+        temp_prop = {}
+        if prop.type == "A":
+            temp_prop["type"]= "Apartment"
+        else:
+            temp_prop["type"]= "House"
+        temp_prop["address"]=prop.address
+        temp_prop["num_rooms"]=prop.num_rooms
+        temp_prop["num_bathrooms"]=prop.num_bathrooms
+        temp_prop["sq_footage"]=prop.sq_footage
+        temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
+        if prop.upload == None:
+            temp_prop["upload"] = ""
+        else:
+            temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -68,6 +110,7 @@ def priceOrder(request):
 
 def sqftOrder(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('sq_footage')
     property_list=[]
     for prop in ordered_properties:
@@ -81,10 +124,14 @@ def sqftOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -95,6 +142,7 @@ def sqftOrder(request):
 
 def bedOrder(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('num_rooms')
     property_list=[]
     for prop in ordered_properties:
@@ -108,10 +156,14 @@ def bedOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -122,6 +174,7 @@ def bedOrder(request):
 
 def bathOrder(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('num_bathrooms')
     property_list=[]
     for prop in ordered_properties:
@@ -135,10 +188,14 @@ def bathOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -149,6 +206,7 @@ def bathOrder(request):
 
 def aptOrder(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('type')
     property_list=[]
     for prop in ordered_properties:
@@ -162,10 +220,14 @@ def aptOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -176,6 +238,7 @@ def aptOrder(request):
 
 def houseOrder(request):
     property_objects = models.Property_Model.objects.all()
+    applicaton_objects = models.Application_Model.objects.all()
     ordered_properties = property_objects.order_by('-type')
     property_list=[]
     for prop in ordered_properties:
@@ -189,10 +252,14 @@ def houseOrder(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]= "$" + str(prop.price)
+        temp_prop["id"]=prop.id
         if prop.upload == None:
             temp_prop["upload"] = ""
         else:
             temp_prop["upload"] = prop.upload.url
+        for app in applicaton_objects:
+            if(app.applicant.username == request.user.username and app.property == prop):
+                temp_prop["applied"]="(You Have Already Applied To This Property)"
         property_list+=[temp_prop]
 
     context = {
@@ -234,12 +301,12 @@ def addproperty(request):
     return render(request, "addproperty.html", context=context)
 
 @login_required
-def applyproperty(request):
+def applyproperty(request, prop_id):
     if request.method == "POST":
         if request.user.is_authenticated: #Must be logged in user to post
             form = forms.ApplyForm(request.POST)
             if form.is_valid():
-                form.save(request)
+                form.save(request, prop_id)
                 return redirect("/")
         else:
             form = forms.ApplyForm()
@@ -260,6 +327,7 @@ def applyproperty(request):
     context = {
         "title":"Student Housing",
         "application_list":application_list,
+        "prop_id":prop_id,
         "form":form
     }
     return render(request, "apply.html", context=context)

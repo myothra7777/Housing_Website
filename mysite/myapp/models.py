@@ -15,6 +15,9 @@ class Property_Model(models.Model):
     price = models.IntegerField()
     upload = models.ImageField(upload_to='uploads/')
 
+    def __str__(self):
+        return self.address + " Property ID:" + str(self.id)
+
 class Application_Model(models.Model):
     fname = models.CharField(max_length=50)
     lname = models.CharField(max_length=50)
@@ -22,3 +25,8 @@ class Application_Model(models.Model):
     salary = models.CharField(max_length=10)
     ssn = models.CharField(max_length=11)
     phone = models.CharField(max_length=20)
+    property = models.ForeignKey(Property_Model, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.applicant.first_name + " " + self.applicant.last_name + " Application For " + self.property.address
