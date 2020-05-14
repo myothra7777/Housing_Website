@@ -8,12 +8,12 @@
     <a>Sort Properties</a>
     <ul class="menu">
       <li><a href="/">Featured</a></li>
-      <li><a href="/price/">By Price</a></li>
-      <li><a href="/sqft/">By Square Footage</a></li>
-      <li><a href="/bed/">By # Bedrooms</a></li>
-      <li><a href="/bath/">By # Bathrooms</a></li>
-      <li><a href="/apartments/">By Apartments</a></li>
-      <li><a href="/houses/">By Houses</a></li>
+      <li><a href="/price/">Price</a></li>
+      <li><a href="/sqft/">Square Footage</a></li>
+      <li><a href="/bed/"># of Bedrooms</a></li>
+      <li><a href="/bath/"># of Bathrooms</a></li>
+      <li><a href="/apartments/">Apartments</a></li>
+      <li><a href="/houses/">Houses</a></li>
     </ul>
   </li>
 </ul>
@@ -29,10 +29,10 @@
     <p class="text-center">Address</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center"># Bedrooms</p>
+    <p class="text-center"># of Bedrooms</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center"># Bathrooms</p>
+    <p class="text-center"># of Bathrooms</p>
   </div>
   <div class="cell small-1">
     <p class="text-center">Square Footage</p>
@@ -44,31 +44,32 @@
 {% for p in property_list %}
 <div class="grid-x">
   <div class="cell small-1">
+    <br>
    <img src="{{ p.upload }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;"/>
  </div>
  <div class="cell small-1">
  </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.type }}</p>
+    <p class="text-center"><br><br>{{ p.type }}</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.address }}</p>
+    <p class="text-center"><br><br>{{ p.address }}</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.num_rooms }}</p>
+    <p class="text-center"><br><br>{{ p.num_rooms }}</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.num_bathrooms }}</p>
+    <p class="text-center"><br><br>{{ p.num_bathrooms }}</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.sq_footage }}</p>
+    <p class="text-center"><br><br>{{ p.sq_footage }}</p>
   </div>
   <div class="cell small-1">
-    <p class="text-center">{{ p.price }}</p>
+    <p class="text-center"><br><br>{{ p.price }}</p>
   </div>
   {% if user.is_authenticated %}
   <div class="cell small-1">
-    <a class="button" href="/apply/">Apply Now</a>
+    <br><br><a class="button" href="/apply/">Apply Now</a>
   </div>
   {% endif %}
 </div>

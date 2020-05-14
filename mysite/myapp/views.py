@@ -34,7 +34,7 @@ def index(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -61,7 +61,7 @@ def priceOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -88,7 +88,7 @@ def sqftOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -115,7 +115,7 @@ def bedOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -142,7 +142,7 @@ def bathOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -169,7 +169,7 @@ def aptOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -196,7 +196,7 @@ def houseOrder(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
     }
     return render(request, "index.html", context=context)
@@ -227,7 +227,7 @@ def addproperty(request):
         property_list+=[temp_prop]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "property_list":property_list,
         "form":form
     }
@@ -258,7 +258,7 @@ def applyproperty(request):
         application_list+=[temp_app]
 
     context = {
-        "title":"Final Project",
+        "title":"Student Housing",
         "application_list":application_list,
         "form":form
     }
