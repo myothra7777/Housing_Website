@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
-<form action="/apply/" method="post">
+<form action="/apply/" enctype="multipart/form-data" method="post">
   {% csrf_token %}
   {{ form.fname.label }}
   {{ form.fname }}
@@ -11,9 +11,9 @@
   {{ form.lname.label }}
   {{ form.lname }}
   {{ form.lname.errors }}
-  {{ form.address.label }}
-  {{ form.address }}
-  {{ form.address.errors }}
+  {{ form.cur_address.label }}
+  {{ form.cur_address }}
+  {{ form.cur_address.errors }}
   {{ form.salary.label }}
   {{ form.salary }}
   {{ form.salary.errors }}

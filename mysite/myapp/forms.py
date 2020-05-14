@@ -58,7 +58,7 @@ class PropertyForm(forms.Form):
     num_bathrooms = forms.CharField(max_length=1, label="Number of Bathrooms")
     sq_footage = forms.CharField(max_length=5, label="Square Footage")
     price = forms.CharField(max_length=20, label="Monthly Cost")
-    upload = forms.ImageField(label="Upload") #???????????????????????????????????
+    upload = forms.ImageField(label="Upload")
 
     def save(self, request):
         property_instance = models.Property_Model()
@@ -68,14 +68,14 @@ class PropertyForm(forms.Form):
         property_instance.num_bathrooms = self.cleaned_data["num_bathrooms"]
         property_instance.sq_footage = self.cleaned_data["sq_footage"]
         property_instance.price = self.cleaned_data["price"]
-        property_instance.upload = self.cleaned_data["upload"] #??????????????????????????????
+        property_instance.upload = self.cleaned_data["upload"]
         property_instance.save()
         return property_instance
 
 class ApplyForm(forms.Form):
     fname = forms.CharField(max_length=50, label="First Name")
     lname = forms.CharField(max_length=50, label="Last Name")
-    address = forms.CharField(max_length=100, label="Current Address")
+    cur_address = forms.CharField(max_length=100, label="Current Address")
     salary = forms.CharField(max_length=10, label="Monthly Salary")
     ssn = forms.CharField(max_length=11, label="SSN")
     phone = forms.CharField(max_length=20, label="Phone Number")
@@ -84,7 +84,7 @@ class ApplyForm(forms.Form):
         application_instance = models.Application_Model()
         application_instance.fname = self.cleaned_data["fname"]
         application_instance.lname = self.cleaned_data["lname"]
-        application_instance.address = self.cleaned_data["address"]
+        application_instance.cur_address = self.cleaned_data["cur_address"]
         application_instance.salary = self.cleaned_data["salary"]
         application_instance.ssn = self.cleaned_data["ssn"]
         application_instance.phone = self.cleaned_data["phone"]

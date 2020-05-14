@@ -223,7 +223,7 @@ def addproperty(request):
         temp_prop["num_bathrooms"]=prop.num_bathrooms
         temp_prop["sq_footage"]=prop.sq_footage
         temp_prop["price"]=prop.price
-        temp_prop["upload"]=prop.upload #??????????????????????
+        temp_prop["upload"]=prop.upload
         property_list+=[temp_prop]
 
     context = {
@@ -249,12 +249,12 @@ def applyproperty(request):
     application_list=[]
     for app in applicaton_objects:
         temp_app = {}
-        temp_app["fname"]=prop.fname
-        temp_app["lname"]=prop.lname
-        temp_app["address"]=prop.address
-        temp_app["salary"]=prop.salary
-        temp_app["ssn"]=prop.ssn
-        temp_app["phone"]=prop.phone
+        temp_app["fname"]=app.fname
+        temp_app["lname"]=app.lname
+        temp_app["cur_address"]=app.cur_address
+        temp_app["salary"]=app.salary
+        temp_app["ssn"]=app.ssn
+        temp_app["phone"]=app.phone
         application_list+=[temp_app]
 
     context = {

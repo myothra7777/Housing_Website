@@ -44,7 +44,7 @@
 {% for p in property_list %}
 <div class="grid-x">
   <div class="cell small-1">
-   <img src="{{ p.upload }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;"/> 
+   <img src="{{ p.upload }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;"/>
  </div>
  <div class="cell small-1">
  </div>
@@ -66,6 +66,11 @@
   <div class="cell small-1">
     <p class="text-center">{{ p.price }}</p>
   </div>
+  {% if user.is_authenticated %}
+  <div class="cell small-1">
+    <a class="button" href="/apply/">Apply Now</a>
+  </div>
+  {% endif %}
 </div>
 {% endfor %}
 {% endif %}
